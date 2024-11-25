@@ -1,3 +1,8 @@
+// 1. შექმენი კლასი Person, რომელსაც ექნება name და age ატრიბუტები. დაამატე მეთოდი introduce(), რომელიც დააბრუნებს ტექსტს:
+// Hello, my name is [name] and I am [age] years old.
+
+// 2. დაამატე სტატიკური მეთოდი isAdult(age) კლასთან Person, რომელიც დააბრუნებს true თუ ასაკი მეტია ან ტოლია 18-ის და false - წინააღმდეგ შემთხვევაში.
+// დავალება: შექმენი ახალი ობიექტი და შეამოწმე ეს სტატიკური მეთოდი.
 class Person {
   constructor(name, age) {
     this.name = name;
@@ -18,6 +23,8 @@ let people = new Person("giorgi", 18);
 console.log(people.introduce());
 console.log(Person.isAdult(people.age));
 
+// 3. კლასების მემკვიდრეობა (Inheritance)
+// შექმენი კლასი Animal, რომელსაც ექნება name და მეთოდი speak(). შექმენი შვილობილი კლასი Dog, რომელსაც ექნება მეთოდი speak(), რომელიც დააბრუნებს: [name] says: Woof!
 class Animal {
   constructor(name) {
     this.name = name;
@@ -35,6 +42,10 @@ class Dog extends Animal {
 let dog = new Dog("jeka");
 dog.speak();
 
+// 4. DOM-ის გამოყენება
+// შექმენი კლასი Button, რომელსაც ექნება label და color პარამეტრები კონსტრუქტორში. დაამატე მეთოდი render(containerId), რომელიც შეიქმნის ღილაკს შესაბამისი ფერით და ტექსტით და დაამატებს კონტეინერში.
+// დავალება: შექმენი ორი ღილაკი და დაამატე div ელემენტში.
+let div = document.createElement("div");
 class Button {
   constructor(label, color) {
     this.label = label;
@@ -45,9 +56,7 @@ class Button {
     let button = document.createElement("button");
     button.textContent = this.label;
     button.style.backgroundColor = this.color;
-    let div = document.createElement("div");
     document.body.appendChild(div);
-    div.appendChild(button);
   }
 }
 let button1 = new Button("Click Me", "blue");
@@ -56,13 +65,15 @@ let button2 = new Button("Click Me", "red");
 button1.render();
 button2.render();
 
+// 5. შექმენი კლასი Vehicle, რომელსაც ექნება brand და speed ატრიბუტები და მეთოდი describe(). შემდეგ შექმენი Car კლასი, რომელიც მემკვიდრეობით მიიღებს Vehicle-ს და დაამატე თვისება model.
+// დავალება: შექმენი რამდენიმე Car ობიექტი და დაიბეჭდე მათი მონაცემები.
 class Vehicle {
   constructor(brand, speed) {
     this.brand = brand;
     this.speed = speed;
   }
   describe() {
-    console.log(`vehicle: ${this.brand}, speed: ${this.speed} km/h.`);
+    console.log(this.brand, this.speed);
   }
 }
 
@@ -72,7 +83,7 @@ class Car extends Vehicle {
     this.model = model;
   }
   describe() {
-    console.log(`${this.model} is  ${this.brand}, speed: ${this.speed} km/h.`);
+    console.log(this.model, this.brand, this.speed);
   }
 }
 
@@ -82,6 +93,8 @@ let car2 = new Car("bmw", 220, "boloswina");
 car1.describe();
 car2.describe();
 
+// 6. შექმენი კლასი Product, რომელსაც ექნება name, price და category ატრიბუტები. დაამატე სტატიკური მეთოდი filterByCategory(products, category), რომელიც გამოიყვანს კონკრეტული კატეგორიის პროდუქტებს.
+// დავალება: შექმენი რამდენიმე პროდუქტი და ფილტრაციით აჩვენე მხოლოდ electronics კატეგორიის პროდუქტები.
 class Product {
   constructor(name, price, category) {
     this.name = name;
@@ -104,6 +117,9 @@ let electronics = Product.filterByCategory(
 );
 console.log(electronics);
 
+// 7. შექმენი კლასი Event, რომელსაც ექნება name და date ატრიბუტები. დაამატე მეთოდი isUpcoming(), რომელიც დაადგენს, ღონისძიება მომავალშია თუ არა.
+// დავალება: დაამატე რამდენიმე ღონისძიება და შეამოწმე ისინი.
+
 class Event {
   constructor(name, date) {
     this.name = name;
@@ -121,12 +137,14 @@ class Event {
   }
 }
 
-const event1 = new Event("Conference", "2022-01-01");
-const event2 = new Event("Meeting", "2025-01-01");
+let event1 = new Event("meeting1", "2022-01-01");
+let event2 = new Event("meeting2", "2025-01-01");
 
 console.log(event1.isUpcoming());
 console.log(event2.isUpcoming());
 
+// 8. შექმენი კლასი Character, რომელსაც ექნება name და health თვისებები. შექმენი შვილობილი კლასი Warrior, რომელსაც დაემატება attack() მეთოდი, რომელიც შეამცირებს health-ს 10-ით.
+// დავალება: შექმენი ორი პერსონაჟი და გამოიყენე მათი attack() მეთოდი.
 class Character {
   constructor(name, health) {
     this.name = name;
@@ -148,6 +166,9 @@ warrior2.attack();
 console.log(warrior1.health);
 console.log(warrior2.health);
 
+
+// 9. შექმენი კლასი Task, რომელსაც ექნება title, completed და priority ატრიბუტები. დაამატე მეთოდი toggleCompleted(), რომელიც შეცვლის ტასქის სტატუსს (completed).
+// დაამატე სტატიკური მეთოდი filterByPriority(tasks, priority), რომელიც დააბრუნებს მხოლოდ იმ ტასქებს, რომლებსაც შესაბამისი პრიორიტეტი აქვთ.
 class Task {
   constructor(title, completed, priority) {
     this.title = title;
@@ -174,6 +195,7 @@ task3.toggleCompleted();
 let filtered = Task.filterByCategory([task1, task2, task3], "Low");
 console.log(filtered);
 
+// 10. შექმენი კლასი Appointment, რომელსაც ექნება title და date ატრიბუტები. დაამატე მეთოდი isToday(), რომელიც დააბრუნებს true, თუ ღონისძიება დღეს უნდა გაიმართოს და false, წინააღმდეგ შემთხვევაში.
 class Appointment {
   constructor(title, date) {
     this.title = title;
